@@ -1,0 +1,85 @@
+## Description
+
+      Retrieve LeetCode statistics for a specific user.
+
+      ## Usage
+
+      To retrieve LeetCode statistics for a specific user, make a GET request to the `/profile/:username` endpoint.
+
+      ## Example Code
+
+      ```jsx
+      import axios from 'axios';
+
+      const fetchLeetCodeProfile = async (username) => {
+        try {
+          const response = await axios.get('/profile', { data: { username } });
+          return response.data;
+        } catch (error) {
+          console.error('Error fetching LeetCode profile:', error);
+          throw error;
+        }
+      };
+
+      // Example Usage
+      const username = 'exampleUser';
+
+      try {
+        const leetCodeProfile = await fetchLeetCodeProfile(username);
+        console.log('LeetCode Profile:', leetCodeProfile);
+      } catch (error) {
+        console.error('Error:', error.message);
+      }
+      ```
+
+      ## Response
+
+      ```json
+      {
+        "data": {
+          "problemsSolvedBeatsStats": [
+            {
+              "difficulty": "Easy",
+              "percentage": 65.03
+            },
+            {
+              "difficulty": "Medium",
+              "percentage": 69.21
+            },
+            {
+              "difficulty": "Hard",
+              "percentage": null
+            }
+          ],
+          "submitStatsGlobal": {
+            "acSubmissionNum": [
+              {
+                "difficulty": "All",
+                "count": 68
+              },
+              {
+                "difficulty": "Easy",
+                "count": 31
+              },
+              {
+                "difficulty": "Medium",
+                "count": 36
+              },
+              {
+                "difficulty": "Hard",
+                "count": 1
+              }
+            ]
+          }
+        }
+      }
+      ```
+
+      ## Response Explanation
+
+      - `problemsSolvedBeatsStats`: An array containing the percentage of problems solved for each difficulty level.
+      - `submitStatsGlobal`: Global statistics for accepted submissions, categorized by difficulty level.
+
+      ## Errors
+
+      If there is an error while fetching the data, the API will respond with an error message.

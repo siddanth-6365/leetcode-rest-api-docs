@@ -1,1 +1,44 @@
-# setup
+# LeetCode Stats RESTful API Endpoints
+
+Welcome to the LeetCode Stats RESTful API! Below are the available endpoints that you can use to retrieve valuable LeetCode statistics for different purposes. The base URL for fetching the data is [https://leetcode-rest-api.onrender.com](https://leetcode-rest-api.onrender.com). All you need to do is pass the username in the `req.body` for authentication.
+
+## Getting Started
+
+To start using the API, you can make a request to the base URL **[https://leetcode-rest-api.onrender.com](https://leetcode-rest-api.onrender.com)**. Here's a quick overview:
+
+```jsx
+import axios from 'axios';
+
+const fetchData = async (endpoint, username) => {
+  try {
+    const response = await axios.get(`https://leetcode-rest-api.onrender.com/${endpoint}`, { data: { username } });
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching data from ${endpoint}:`, error);
+    throw error;
+  }
+};
+
+// Example Usage
+const username = 'exampleUser';
+const endpoint = '/profile';
+
+try {
+  const data = await fetchData(endpoint, username);
+  console.log('LeetCode Stats:', data);
+} catch (error) {
+  console.error('Error:', error.message);
+}
+```
+
+### Available Endpoints
+
+  -  /profile: Retrieve LeetCode statistics for a specific user.
+  -  /publicProfile: Get public profile information for a given username.
+  -  /languageStats: Obtain language-specific problem-solving statistics.
+  -  /userContestRankingInfo: Fetch user contest ranking information.
+  -  /userBadges: Get badges earned by the user.
+  -  /userProfileCalendar: Access the user's profile calendar data.
+  -  /streakCounter: Retrieve streak counter details.
+
+Feel free to explore these endpoints and integrate the LeetCode Stats RESTful API into your projects effortlessly. Happy coding!
