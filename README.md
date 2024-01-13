@@ -1,0 +1,85 @@
+# An RESTful API for **LEETCODE** Statistics
+
+Welcome to the documentation for the LeetCode Stats RESTful API! This project aims to enhance the accessibility and ease of integration for developers using LeetCode data by converting the existing LeetCode API, which is based on GraphQL, into a RESTful API. The primary goal is to provide a straightforward way for developers to retrieve valuable statistics and information about LeetCode users and their problem-solving activities.
+
+## Vision
+
+The vision behind the LeetCode Stats RESTful API is to make it easier for developers to integrate LeetCode statistics into their projects. By providing a RESTful endpoint, developers can easily access and utilize the data without having to deal with the complexities of GraphQL.
+
+## Problem Statement
+
+The LeetCode API primarily uses GraphQL for querying data. While GraphQL is powerful and flexible, it may not be the preferred choice for all developers. Some developers may be more comfortable working with RESTful APIs and may find it easier to integrate LeetCode statistics into their projects using RESTful endpoints.
+
+To demonstrate the usage of the LeetCode Stats RESTful API, let's consider an example endpoint that retrieves the profile statistics for a given username:
+
+## Example Endpoint: `/profile`
+#### All you need is to pass the username in req.body
+
+To retrieve LeetCode statistics for a specific user, you can make a request to the `/profile` endpoint with the user's `username` provided in the request body. Below is an example code snippet for this endpoint:
+
+```jsx
+import axios from 'axios';
+
+const fetchLeetCodeProfile = async (username) => {
+  try {
+    const response = await axios.get('/profile', { data: { username } });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching LeetCode profile:', error);
+    throw error;
+  }
+};
+
+// Example Usage
+const username = 'siddanth6365';
+
+try {
+  const leetCodeProfile = await fetchLeetCodeProfile(username);
+  console.log('LeetCode Profile:', leetCodeProfile);
+} catch (error) {
+  console.error('Error:', error.message);
+}
+```
+
+### Response profile data of username- siddanth6365 :
+
+```json
+{
+  "data": {
+    "problemsSolvedBeatsStats": [
+      {
+        "difficulty": "Easy",
+        "percentage": 65.03
+      },
+      {
+        "difficulty": "Medium",
+        "percentage": 69.21
+      },
+      {
+        "difficulty": "Hard",
+        "percentage": null
+      }
+    ],
+    "submitStatsGlobal": {
+      "acSubmissionNum": [
+        {
+          "difficulty": "All",
+          "count": 68
+        },
+        {
+          "difficulty": "Easy",
+          "count": 31
+        },
+        {
+          "difficulty": "Medium",
+          "count": 36
+        },
+        {
+          "difficulty": "Hard",
+          "count": 1
+        }
+      ]
+    }
+  }
+}
+```
